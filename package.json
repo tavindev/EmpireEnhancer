@@ -1,0 +1,42 @@
+{
+  "name": "EmpireEnhancer",
+  "version": "0.0.1",
+  "description": "CSGO Empire Extension",
+  "repository": "http://github.com/",
+  "author": "Gustavo Vargas",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "webpack --mode=development --watch",
+    "build": "cross-env NODE_ENV=production webpack --mode=production"
+  },
+  "dependencies": {
+    "element-ready": "^4.1.1",
+    "mem": "^6.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "select-dom": "^6.0.2",
+    "style-loader": "^1.2.1",
+    "webext-options-sync": "^1.2.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.0.2",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.6.0",
+    "terser-webpack-plugin": "^3.0.6",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
