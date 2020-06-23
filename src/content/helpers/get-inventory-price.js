@@ -1,5 +1,4 @@
 import select from "select-dom";
-import elementReady from "element-ready";
 import waitAjax from "./wait-ajax";
 
 const A = ["Not Tradable", "Not Accepted"];
@@ -12,14 +11,26 @@ export default async () => {
 
   //TODO: Is there anyway i can improve this?
   for (let i = 0; i < items.length; i++) {
-    let p =
-      items[i].children[0].children[1].children[0].children[0].children[1]
-        .innerHTML;
+    let a =
+      items[i].children[0].children[1].children[0].children[0].children[1];
 
-    if (!A.includes(p)) {
-      p = p.replace(".", "");
-      total = total + parseFloat(p.replace(",", "."));
+    if (a) {
+      let p = a.innerHTML;
+      if (!A.includes(p)) {
+        p = p.replace(".", "");
+        total = total + parseFloat(p.replace(",", "."));
+      }
     }
   }
-  return total.toFixed(2);
+
+  let p = total.toFixed(2);
+
+  let balanceC = select(".balance");
+  let balance = select(".whitespace-no-wrap", balanceC)
+    .innerText.replace(".", "")
+    .replace(",", ".");
+
+  total = (total + parseFloat(balance)).toFixed(2);
+  
+  return { p, total };
 };

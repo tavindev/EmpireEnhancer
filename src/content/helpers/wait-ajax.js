@@ -12,7 +12,7 @@ export default async (s, o) => {
     @param {string} o (Optional) Parent Element
     @returns {element}
   */
-  
+
   do {
     await sleep(500);
   } while (o ? !select(s, select(o)) : !select(s));

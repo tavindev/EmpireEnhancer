@@ -1,7 +1,10 @@
-import { getCurrentPath } from './locations'
+import { getCurrentPath } from "./locations";
 
 export const isSteamDepositPage = path =>
-  /deposit\/steam$/.test(path || getCurrentPath())
+  /deposit\/steam$/.test(path || getCurrentPath());
+
+export const isWithdrawPage = path =>
+  /withdraw\//.test(path || getCurrentPath());
 
 /**
 export const isPlayerProfileStats = path =>

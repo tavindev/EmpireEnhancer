@@ -3,10 +3,10 @@ const elementReady = require("element-ready");
 import select from "select-dom";
 import storage from "../shared/storage";
 import { isLoggedIn } from "./helpers/user";
-import calculatePrice from "./helpers/get-inventory-price";
 import waitAjax from "./helpers/wait-ajax";
-import { isSteamDepositPage } from "./helpers/pages";
-import inventoryPriceComponent from "./components/inventory-price";
+import { runFeatureIf } from "./helpers/user-settings";
+import userInventoryPrice from "./features/show-inventory-price";
+import clickClaimRaim from "./features/click-claim-rain";
 
 let controls = {
   onSteamDepositPage: false
@@ -75,40 +75,22 @@ async function imready() {
       pressok(); //press ok on this pop up if it exists
       await sleep(10000); //wait 58 seconds before continuing the script, to avoid spamming "I'm ready" button
     }
-    if (btn[i].innerText.indexOf("Claim FREE Coins") > -1) {
-      btn[i].click();
-      console.log("Success ! claimed Rain");
-    }
   }
 }
 
-//????? idk what name i should put help me xD
-let checker = async () => {
-  await waitAjax(".search");
-
-  let c = select(".search");
-  let d = document.createElement("div");
-
-  d.style.width = "100%";
-  d.innerHTML = await inventoryPriceComponent(await calculatePrice());
-
-  c.insertBefore(d, c.children[1]);
-  c.style.display = "flex";
-  c.style.maxWidth = "40rem";
-};
-
 function observe() {
+  const rainMessage = select(".chat-rain-message");
+  if (rainMessage) {
+    runFeatureIf("autoClaimRain", clickClaimRaim, rainMessage);
+  }
+
   const observer = new MutationObserver(mutations => {
-    //TODO: Implement Button Clicker, inventory Price Calculator
+    //TODO: Implement Button Clicker
     mutations.forEach((item, i) => {
       if (!item.target.className.includes("chat__messages")) {
-        //console.log(item);
-        if (isSteamDepositPage() && !controls.onSteamDepositPage) {
-          checker();
-          controls.onSteamDepositPage = true;
-        }
-        if (!isSteamDepositPage() && controls.onSteamDepositPage) {
-          controls.onSteamDepositPage = false;
+        const rainMessage = select(".chat-rain-message");
+        if (rainMessage) {
+          runFeatureIf("autoClaimRain", clickClaimRaim, rainMessage);
         }
       }
     });
@@ -126,5 +108,6 @@ function observe() {
 
   if (isLoggedIn) {
     observe();
+    userInventoryPrice();
   }
 })();

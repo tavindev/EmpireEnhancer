@@ -1,3 +1,6 @@
 export const DEFAULTS = {
-  extensionEnabled: true
+  extensionEnabled: true,
+  showInventoryPrice: true,
+  autoClaimRain: true,
+  inventoryItems: {}
 };
