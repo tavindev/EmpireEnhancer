@@ -4,5 +4,6 @@
 
 yarn-error.log
 *.bat
+*.sh
 
 process-palette.json

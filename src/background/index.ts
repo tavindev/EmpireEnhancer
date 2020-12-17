@@ -80,7 +80,7 @@ async function getMarketData() {
     const code = '988690'
     const parsed = await ky
         .post(
-            `https://bitskins.com/api/v1/get_all_item_prices/?api_key=4a2bfb5e-5d76-4ecd-9369-962cbcc14ad1&app_id=730&code=${code}`,
+            `https://bitskins.com/api/v1/get_all_item_prices/?api_key=${process.env.BIT_API_KEY}&app_id=730&code=${code}`,
         )
         .json()
     return parsed

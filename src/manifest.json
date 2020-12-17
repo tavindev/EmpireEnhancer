@@ -1,27 +1,23 @@
 {
-  "manifest_version": 2,
-  "name": "Auto Deposit Notifier",
-  "description": "On csgoempire.com, detects when someone buy your item, clicks ready and send notification + discord message.",
-  "version": "2.7.0",
-  "content_scripts": [
-    {
-      "matches": [
-        "https://csgoempire.com/*",
-        "https://csgoempire.gg/*",
-        "https://www.rollbit.com/*"
-      ],
-      "js": ["content.js"],
-      "run_at": "document_end"
-    }
-  ],
+    "manifest_version": 2,
+    "name": "Empire Enhancer",
+    "description": "A CSGO Empire extension designed especially for traders.",
+    "version": "1.0.0",
+    "content_scripts": [
+        {
+            "matches": ["https://csgoempire.com/*", "https://csgoempire.gg/*"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ],
 
-  "browser_action": {
-    "default_popup": "popup.html"
-  },
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
-  "permissions": ["notifications", "storage", "https://discordapp.com/api/"],
-  "homepage_url": "https://github.com/egeant94/Auto-Deposit-Notifier"
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "permissions": ["notifications", "storage", "https://discordapp.com/api/"],
+    "homepage_url": "https://github.com/gustavo-dev/EmpireEnhancer"
 }
