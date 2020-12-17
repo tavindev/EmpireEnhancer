@@ -6,4 +6,6 @@ yarn-error.log
 *.bat
 *.sh
 
+.env
+
 process-palette.json
